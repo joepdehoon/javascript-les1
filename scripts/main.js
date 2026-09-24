@@ -72,3 +72,90 @@ const departments = {
 }
 
 console.log(departments);
+
+console.log(
+    "De afdeling Sales heeft " +
+    departments.sales.numberOfEmployees +
+    " medewerkers"
+);
+console.log(
+    "Marketing is een leuke afdeling om te werken. " +
+    departments.marketing.description
+);
+console.log(
+    "De afdeling Customer Service heeft " +
+    departments["customer-service"].numberOfEmployees +
+    " medewerkers"
+);
+console.log(
+    "Sales is een uitdagende afdeling om te werken als Verkoopmanager. " +
+    departments.sales.jobs[1].description
+);
+const chosenDepartment = prompt(
+    "Over welke afdeling wil je meer informatie? Kies uit: marketing / sales / customer-service"
+);
+
+if (
+    chosenDepartment === "marketing" ||
+    chosenDepartment === "sales" ||
+    chosenDepartment === "customer-service"
+) {
+    const selectedDepartment = departments[chosenDepartment];
+
+    console.log(
+        chosenDepartment +
+        " is een leuke afdeling om te werken. Er werken op dit moment " +
+        selectedDepartment.numberOfEmployees +
+        " medewerkers."
+    );
+
+    const chosenJob = prompt(
+        "Je koos " + chosenDepartment +
+        ". Over welke functie wil je meer weten? Voer een getal tussen 0 en 3 in.\n" +
+        "0: " + selectedDepartment.jobs[0].title + "\n" +
+        "1: " + selectedDepartment.jobs[1].title + "\n" +
+        "2: " + selectedDepartment.jobs[2].title + "\n" +
+        "3: " + selectedDepartment.jobs[3].title
+    );
+
+    if (
+        chosenJob === "0" ||
+        chosenJob === "1" ||
+        chosenJob === "2" ||
+        chosenJob === "3"
+    ) {
+        const selectedJob = selectedDepartment.jobs[chosenJob];
+
+        console.log(
+            "Je koos " +
+            selectedJob.title +
+            ". Een uitdagende rol! " +
+            selectedJob.description
+        );
+
+        document.getElementById("role-title").textContent =
+            selectedJob.title;
+
+        document.getElementById("department-description").textContent =
+            selectedDepartment.description;
+
+        document.getElementById("role-description").textContent =
+            selectedJob.description;
+    } else {
+        const errorMessage =
+            "Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.";
+
+        console.error(errorMessage);
+
+        document.getElementById("error-message").textContent =
+            errorMessage;
+    }
+} else {
+    const errorMessage =
+        "Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.";
+
+    console.error(errorMessage);
+
+    document.getElementById("error-message").textContent =
+        errorMessage;
+}
